@@ -17,9 +17,9 @@
                         label = "TAP_DANCE_MOD_TAP";
                         #binding-cells = <0>;
                         tapping_term_ms = <200>;
-                        bindings = <&mt lshft CAPSLOCK> , <&kp esc>;
+                        bindings = <&mt LSHIFT CAPSLOCK>, <&kp ESC>;
                 };
-                }
+                };
         }
 
         keymap {
