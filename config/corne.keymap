@@ -12,12 +12,12 @@
 
 
         behaviors {
-                td_mt: tap-dance-0 {
-                        compatible = "zmk, behavior-tap-dance";
+                td_mt: tap_dance_mod_tap {
+                        compatible = "zmk,behavior-tap-dance";
                         label = "TD_MT";
                         #binding-cells = <0>;
                         tapping_term_ms = <200>;
-                        bindings = <&mt LSHIFT CAPSLOCK>;
+                        bindings = <&mt LSHIFT CAPSLOCK> , <&kp ESC>;
                 };
                 }
         }
