@@ -19,8 +19,8 @@
                         tapping_term_ms = <200>;
                         bindings = <&mt LSHIFT CAPSLOCK>, <&kp ESC>;
                 };
-                };
-        }
+                
+        };
 
         keymap {
                 compatible = "zmk,keymap";
