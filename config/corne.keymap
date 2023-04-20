@@ -1,7 +1,7 @@
 /*
- * copyright (c) 2020 the zmk contributors
+ * Copyright (c) 2020 The ZMK Contributors
  *
- * spdx-license-identifier: mit
+ * SPDX-License-Identifier: MIT
  */
 
 #include <behaviors.dtsi>
@@ -11,58 +11,61 @@
 / {
 
 
-        behaviors {
-                td_mt: tap_dance_mod_tap {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_MOD_TAP";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&mt LSHIFT CAPSLOCK>, <&kp LCTRL>;
-        };
-                
-        };
+        behavior {
+                shft_caps: shift_caps_lock {
+                        compatible = "zmk,behavior-hold-tap";
+                        label = "SHFT_CAPS";
+                        #binding-cells = <0>;
+                        flavor = "tap-preferred";
+                        tapping_term_ms = <200>;
+                        bindings = <&kp LSHFT>, <&kp CAPS>;
+                };
+                };
+        
+
+
 
         keymap {
                 compatible = "zmk,keymap";
 
                 default_layer {
 // -----------------------------------------------------------------------------------------
-// |  tab |  q  |  w  |  e  |  r  |  t  |   |  y  |  u   |  i  |  o  |  p  | bksp |
-// | ctrl |  a  |  s  |  d  |  f  |  g  |   |  h  |  j   |  k  |  l  |  ;  |  '   |
-// | shft |  z  |  x  |  c  |  v  |  b  |   |  n  |  m   |  ,  |  .  |  /  | esc  |
-//                    | gui | lwr | spc |   | ent | rse  | alt |
+// |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
+// | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
+// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
+//                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
                         bindings = <
-   &kp tab   &kp q &kp w &kp e &kp r &kp t   &kp y &kp u  &kp i     &kp o   &kp p    &kp bspc
-   &kp lctrl &kp a &kp s &kp d &kp f &kp g   &kp h &kp j  &kp k     &kp l   &kp semi &kp sqt
-   &td_mt &kp z &kp x &kp c &kp v &kp b   &kp n &kp m  &kp comma &kp dot &kp fslh &kp esc
-                  &kp lgui &mo 1 &kp space   &kp ret &mo 2 &kp ralt
+   &kp TAB   &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
+   &kp LCTRL &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
+   &shft_caps &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp ESC
+                  &kp LGUI &mo 1 &kp SPACE   &kp RET &mo 2 &kp RALT
                         >;
                 };
                 lower_layer {
 // -----------------------------------------------------------------------------------------
-// |  tab |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | bksp |
-// | btclr| bt1 | bt2 | bt3 | bt4 | bt5 |   | lft | dwn |  up | rgt |     |      |
-// | shft |     |     |     |     |     |   |     |     |     |     |     |      |
-//                    | gui |     | spc |   | ent |     | alt |
+// |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BKSP |
+// | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
+// | SHFT |     |     |     |     |     |   |     |     |     |     |     |      |
+//                    | GUI |     | SPC |   | ENT |     | ALT |
                         bindings = <
-   &kp tab    &kp n1       &kp n2       &kp n3       &kp n4       &kp n5         &kp n6   &kp n7   &kp n8 &kp n9    &kp n0 &kp bspc
-   &bt bt_clr &bt bt_sel 0 &bt bt_sel 1 &bt bt_sel 2 &bt bt_sel 3 &bt bt_sel 4   &kp left &kp down &kp up &kp right &trans &trans
-   &kp lshft  &trans       &trans       &trans       &trans       &trans         &trans   &trans   &trans &trans    &trans &trans
-                          	        &kp lgui     &trans       &kp space      &kp ret  &trans   &kp ralt
+   &kp TAB    &kp N1       &kp N2       &kp N3       &kp N4       &kp N5         &kp N6   &kp N7   &kp N8 &kp N9    &kp N0 &kp BSPC
+   &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &trans
+   &kp LSHFT  &trans       &trans       &trans       &trans       &trans         &trans   &trans   &trans &trans    &trans &trans
+                          	        &kp LGUI     &trans       &kp SPACE      &kp RET  &trans   &kp RALT
                         >;
                 };
 
                 raise_layer {
 // -----------------------------------------------------------------------------------------
-// |  tab |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | bksp |
-// | ctrl |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
-// | shft |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
-//                    | gui |     | spc |   | ent |     | alt |
+// |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BKSP |
+// | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
+// | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
+//                    | GUI |     | SPC |   | ENT |     | ALT |
                         bindings = <
-   &kp  tab  &kp excl &kp at &kp hash &kp dllr &kp prcnt   &kp caret &kp amps  &kp kp_multiply &kp lpar &kp rpar &kp bspc
-   &kp lctrl &trans   &trans &trans   &trans   &trans      &kp minus &kp equal &kp lbkt        &kp rbkt &kp bslh &kp grave
-   &kp lshft &trans   &trans &trans   &trans   &trans      &kp under &kp plus  &kp lbrc        &kp rbrc &kp pipe &kp tilde
-                    	     &kp lgui &trans   &kp space   &kp ret   &trans    &kp ralt
+   &kp  TAB  &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR &kp RPAR &kp BSPC
+   &kp LCTRL &trans   &trans &trans   &trans   &trans      &kp MINUS &kp EQUAL &kp LBKT        &kp RBKT &kp BSLH &kp GRAVE
+   &kp LSHFT &trans   &trans &trans   &trans   &trans      &kp UNDER &kp PLUS  &kp LBRC        &kp RBRC &kp PIPE &kp TILDE
+                    	     &kp LGUI &trans   &kp SPACE   &kp RET   &trans    &kp RALT
                         >;
                 };
         };
